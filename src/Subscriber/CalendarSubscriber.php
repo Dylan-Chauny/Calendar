@@ -12,11 +12,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class CalendarSubscriber implements EventSubscriberInterface
 {
-    const DAY_OFF_CODE    = "off";
-    const DAY_WORKED_CODE = "work";
+    const DAY_OFF_CODE     = "off";
+    const DAY_WORKED_CODE  = "work";
     const DAY_HOLIDAY_CODE = "holiday";
 
-    const HOLIDAYS_ARRAY  = [
+    const HOLIDAYS_ARRAY   = [
         [1 => 1],
         [5 => 1],
         [5 => 8],
@@ -28,7 +28,7 @@ class CalendarSubscriber implements EventSubscriberInterface
     ];
 
     const SATURDAY_PATTERN = [self::DAY_WORKED_CODE, self::DAY_WORKED_CODE, self::DAY_OFF_CODE, self::DAY_OFF_CODE];
-    const MONDAY_PATTERN = [self::DAY_OFF_CODE, self::DAY_OFF_CODE, self::DAY_WORKED_CODE, self::DAY_WORKED_CODE];
+    const MONDAY_PATTERN   = [self::DAY_OFF_CODE, self::DAY_OFF_CODE, self::DAY_WORKED_CODE, self::DAY_WORKED_CODE];
 
 
     public function __construct(
