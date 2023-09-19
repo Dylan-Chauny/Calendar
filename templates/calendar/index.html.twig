@@ -1,0 +1,50 @@
+{% block body %}
+    <div id="calendar-holder"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js" integrity="sha256-dHUNnePy81fXq4D/wfu7cPsEIP7zl6MvLb84jtZf+UY=" crossorigin="anonymous"></script>
+{% endblock %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let calendarEl = document.getElementById('calendar-holder');
+
+        let calendar = new FullCalendar.Calendar(calendarEl, {
+            height: "95vh",
+            defaultView: 'dayGridMonth',
+            //editable: true,
+            selectable: true,
+            eventSources: [
+                {
+                    url: "/fc-load-events",
+                    method: "POST",
+                    extraParams: {
+                        filters: JSON.stringify({})
+                    },
+                    failure: () => {
+                        alert("Une erreur est survenue !");
+                    },
+                },
+            ],
+            headerToolbar: {
+                start: 'prev,next today',
+                center: 'title',
+                end: 'dayGridMonth'
+            },
+            buttonText: {
+                today: 'Aujourd\'hui',
+                month: 'Mois',
+            },
+            /*
+              select: function(info) {
+                // Si jamais à l'avenir on veut pouvoir placer nos propre évenements
+                alert('selected ' + info.startStr + ' to ' + info.endStr);
+            },
+             */
+            timeZone: 'UTC',
+            locale: 'fr'
+        });
+        calendar.render();
+    });
+</script>
